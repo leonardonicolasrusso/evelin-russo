@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#4C1513">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600&family=Anton&family=Unbounded:wght@800&family=Fraunces:ital,opsz,wght@1,9..144,700&family=Syne:wght@800&display=swap" rel="stylesheet">
 <style>
 :root{
   --wine:#4C1513; --wine-2:#3a0f0e; --wine-3:#240807;
@@ -106,10 +106,17 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;op
 
 /* ---------- MARQUEE ---------- */
 .marquee{background:var(--blush);color:var(--wine);overflow:hidden;padding:1.1rem 0;transform:rotate(-1.2deg);margin:-1.2rem -2rem 0;position:relative;z-index:2;box-shadow:0 20px 50px -20px rgba(0,0,0,.6)}
-.marquee-track{display:flex;gap:2.4rem;width:max-content;animation:mq 28s linear infinite;font:800 clamp(1.4rem,3.2vw,2.4rem)/1 var(--display);text-transform:uppercase;letter-spacing:-.01em}
+.marquee-track{display:flex;gap:2.4rem;width:max-content;animation:mq 40s linear infinite;font:800 clamp(1.4rem,3.2vw,2.4rem)/1 var(--display);text-transform:uppercase;letter-spacing:-.01em}
 .marquee-track span{display:flex;align-items:center;gap:2.4rem;white-space:nowrap}
 .marquee-track .serif{text-transform:none;font-size:1.15em}
 .marquee svg{width:.7em;height:.7em}
+.marquee-track b{font-weight:inherit}
+.mq-a{font-family:var(--display);font-weight:800}
+.mq-b{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;font-size:1.2em}
+.mq-c{font-family:'Anton',sans-serif;font-weight:400;letter-spacing:.02em}
+.mq-d{font-family:'Fraunces',serif;font-style:italic;font-weight:700;text-transform:none}
+.mq-e{font-family:'Unbounded',sans-serif;font-weight:800;font-size:.82em;letter-spacing:-.02em}
+.mq-f{font-family:'Syne',sans-serif;font-weight:800}
 @keyframes mq{to{transform:translateX(-50%)}}
 
 /* ---------- sections ---------- */
@@ -478,9 +485,9 @@ $('#yr').textContent = new Date().getFullYear();
 
 /* ---------- marquee ---------- */
 (() => {
-  const words = ['Evelin Russo','<span class="serif">Besitos</span>'];
-  const one = words.map(w => `<span>${w}<svg><use href="#i-spark"/></svg></span>`).join('');
-  $('#mq').innerHTML = one.repeat(8);
+  const fonts = ['mq-a','mq-b','mq-c','mq-d','mq-e','mq-f'];
+  const one = fonts.map(f => `<span><b class="${f}">Evelin Russo</b><svg><use href="#i-spark"/></svg></span>`).join('');
+  $('#mq').innerHTML = one.repeat(3);
 })();
 
 /* ---------- audio player ---------- */
