@@ -311,8 +311,7 @@ footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
       </div>
 
       <div class="hero-actions reveal-up d4">
-        <a class="pill pill-ghost" href="#conoceme">Más sobre mí <svg><use href="#i-arrow"/></svg></a>
-        <a class="pill pill-blush" href="#contratame">Contratame</a>
+        <a class="pill pill-blush" href="#conoceme">Más sobre mí <svg><use href="#i-arrow"/></svg></a>
       </div>
     </div>
   </div>
@@ -479,9 +478,9 @@ $('#yr').textContent = new Date().getFullYear();
 
 /* ---------- marquee ---------- */
 (() => {
-  const words = ['Evelin Russo','<span class="serif">en vivo</span>','Rosario','<span class="serif">pop &amp; brillo</span>','Contratame'];
+  const words = ['Evelin Russo','<span class="serif">Besitos</span>'];
   const one = words.map(w => `<span>${w}<svg><use href="#i-spark"/></svg></span>`).join('');
-  $('#mq').innerHTML = one + one + one + one;
+  $('#mq').innerHTML = one.repeat(8);
 })();
 
 /* ---------- audio player ---------- */
