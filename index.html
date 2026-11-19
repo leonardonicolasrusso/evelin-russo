@@ -159,6 +159,21 @@ section{position:relative}
 .sp1{left:4%;top:8%;transform:rotate(-7deg)}
 .sp2{right:4%;bottom:6%;transform:rotate(6deg)}
 .live-cta{display:flex;justify-content:center;margin-top:3rem}
+.vprog{position:absolute;left:0;right:0;top:0;height:3px;background:rgba(255,255,255,.15);z-index:3}
+.vprog i{display:block;height:100%;width:0;background:var(--blush)}
+.vlist{display:flex;justify-content:center;gap:.9rem;margin:2rem auto 0;padding:0 1.25rem;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory}
+.vlist::-webkit-scrollbar{display:none}
+.vthumb{flex:none;width:118px;display:grid;gap:.55rem;text-align:left;scroll-snap-align:center;opacity:.6;transition:opacity .25s,transform .25s var(--ease)}
+.vthumb:hover{opacity:.9;transform:translateY(-3px)}
+.vthumb .tv{position:relative;aspect-ratio:9/16;border-radius:12px;overflow:hidden;border:2px solid transparent;transition:border-color .25s}
+.vthumb img{width:100%;height:100%;object-fit:cover}
+.vthumb .tv::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.55),transparent 55%)}
+.vthumb .num{position:absolute;left:.5rem;bottom:.45rem;z-index:1;font:700 .7rem/1 var(--body);letter-spacing:.1em}
+.vthumb b{font:700 .82rem/1.2 var(--display)}
+.vthumb small{display:block;font-size:.7rem;opacity:.65;margin-top:.15rem}
+.vthumb[aria-current=true]{opacity:1}
+.vthumb[aria-current=true] .tv{border-color:var(--blush)}
+@media (max-width:600px){.vlist{justify-content:flex-start}.vthumb{width:96px}}
 
 /* music */
 .music{background:linear-gradient(180deg,var(--wine-3),var(--wine))}
@@ -346,11 +361,13 @@ footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
     <figure class="side-photo sp1" data-parallax="-0.1"><img src="assets/live-1.jpg" alt="" loading="lazy"></figure>
     <figure class="side-photo sp2" data-parallax="0.1"><img src="assets/white-3.jpg" alt="" loading="lazy"></figure>
     <div class="phone" data-reveal>
-      <video id="vid" src="assets/en-vivo.mp4" poster="assets/en-vivo-poster.jpg" muted loop playsinline preload="metadata"></video>
-      <span class="live-badge">EN VIVO</span>
+      <video id="vid" src="assets/v-fiesta-helado.mp4" poster="assets/v-fiesta-helado-poster.jpg" muted playsinline preload="metadata"></video>
+      <span class="live-badge" id="vBadge">EN VIVO</span>
+      <div class="vprog"><i id="vProg"></i></div>
       <button class="sound" id="sound"><svg><use href="#i-mute"/></svg><span>Activar sonido</span></button>
     </div>
   </div>
+  <div class="vlist" id="vlist" data-reveal></div>
   <div class="live-cta" data-reveal><a class="pill pill-blush" href="#contratame">Quiero este show en mi evento <svg><use href="#i-arrow"/></svg></a></div>
 </section>
 
@@ -564,9 +581,31 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches){
   }, { passive: true });
 }
 
-/* ---------- live video ---------- */
-const vid = $('#vid'), soundBtn = $('#sound');
-new IntersectionObserver(([en]) => { if (en.isIntersecting) vid.play().catch(() => {}); else vid.pause(); }, { threshold: 0.35 }).observe(vid);
+/* ---------- live videos ---------- */
+const VIDEOS = [
+  { id:'v-fiesta-helado', title:'Fiesta del Helado', sub:'En vivo', badge:'EN VIVO' },
+  { id:'v-burgerland',    title:'Burgerland',        sub:'En vivo', badge:'EN VIVO' },
+  { id:'v-cazzu-vivo',    title:'Cazzu',             sub:'En vivo', badge:'EN VIVO' },
+  { id:'v-olvidala',      title:'Olvídala',          sub:'En estudio', badge:'EN ESTUDIO' }
+];
+const vid = $('#vid'), soundBtn = $('#sound'), vlist = $('#vlist');
+let vIdx = 0, vInView = false;
+vlist.innerHTML = VIDEOS.map((v,i) => `<button class="vthumb" data-i="${i}" aria-current="${i===0}"><span class="tv"><img src="assets/${v.id}-poster.jpg" alt="" loading="lazy"><span class="num">0${i+1}</span></span><span><b>${v.title}</b><small>${v.sub}</small></span></button>`).join('');
+function loadVideo(i, play){
+  vIdx = (i + VIDEOS.length) % VIDEOS.length;
+  const v = VIDEOS[vIdx];
+  vid.src = `assets/${v.id}.mp4`; vid.poster = `assets/${v.id}-poster.jpg`;
+  $('#vBadge').textContent = v.badge;
+  $$('.vthumb').forEach((b,k) => b.setAttribute('aria-current', k === vIdx));
+  if (play) vid.play().catch(() => {});
+}
+vlist.addEventListener('click', e => {
+  const b = e.target.closest('.vthumb'); if (!b) return;
+  loadVideo(+b.dataset.i, true);
+});
+vid.addEventListener('ended', () => loadVideo(vIdx + 1, vInView));
+vid.addEventListener('timeupdate', () => { $('#vProg').style.width = (vid.duration ? vid.currentTime / vid.duration * 100 : 0) + '%'; });
+new IntersectionObserver(([en]) => { vInView = en.isIntersecting; if (vInView) vid.play().catch(() => {}); else vid.pause(); }, { threshold: 0.35 }).observe(vid);
 function syncSound(){
   soundBtn.innerHTML = vid.muted ? '<svg><use href="#i-mute"/></svg><span>Activar sonido</span>' : '<svg><use href="#i-vol"/></svg><span>Silenciar</span>';
 }
@@ -575,6 +614,7 @@ soundBtn.addEventListener('click', () => {
   if (!vid.muted){ audio.pause(); if (vid.paused) vid.play().catch(() => {}); }
   syncSound();
 });
+audio.addEventListener('play', () => { if (!vid.muted){ vid.muted = true; syncSound(); } });
 
 /* ---------- spotify embed (works on your own domain; sandboxed previews show the card) ---------- */
 (() => {
