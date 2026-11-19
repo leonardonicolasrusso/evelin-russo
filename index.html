@@ -242,8 +242,9 @@ footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
 @media (max-width:900px){
   .nav ul{display:none}
   .hero::before{background:linear-gradient(0deg,rgba(36,8,7,.98) 0%,rgba(36,8,7,.85) 34%,rgba(76,21,19,.2) 62%,rgba(76,21,19,.1) 100%)}
-  .hero-bg{bottom:34%;right:-42%}
-  .hero-bg img{object-position:45% 12%}
+  .hero-bg{bottom:34%;left:24%;right:-24%}
+  .hero-bg img{object-position:50% 12%}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--wine-3) 0%,rgba(36,8,7,.75) 8%,rgba(36,8,7,0) 30%)}
   .hero::before{background:linear-gradient(0deg,var(--wine-3) 0%,var(--wine-3) 36%,rgba(36,8,7,.55) 50%,rgba(76,21,19,0) 70%),linear-gradient(180deg,rgba(36,8,7,.55) 0%,rgba(36,8,7,0) 18%)}
   .hero-inner{padding:6rem 0 1.8rem;gap:1.2rem}
   .hero-copy{gap:1rem}
