@@ -196,27 +196,14 @@ section{position:relative}
 
 /* booking */
 .book{background:radial-gradient(120% 90% at 85% 0%,#7a2a27 0%,var(--wine) 45%,var(--wine-3) 100%);overflow:hidden}
-.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,6rem);align-items:start}
-.book-title{font:800 clamp(3.4rem,10vw,8rem)/.85 var(--display);letter-spacing:-.05em;color:var(--blush)}
-.book-copy{display:grid;gap:1.6rem;position:relative}
-.book .lips{width:min(220px,40vw);height:auto;animation:bob 6s ease-in-out infinite;margin-top:1rem}
+.book-inner{position:relative;display:grid;justify-items:center;text-align:center;gap:1.6rem}
+.book-title{font:800 clamp(3rem,15vw,9.5rem)/.9 var(--display);letter-spacing:-.05em;color:var(--blush);white-space:nowrap}
+.book .lead{margin-inline:auto}
+.book .lips{position:absolute;width:clamp(110px,16vw,210px);height:auto;right:0;top:-2rem;opacity:.95;animation:bob 6s ease-in-out infinite;pointer-events:none}
+.wa-btn{padding:1.15rem 1.9rem;font-size:1rem;margin-top:.4rem}
+.wa-btn svg{width:20px;height:20px}
 @keyframes bob{50%{transform:translateY(-12px) rotate(-4deg)}}
-.form{background:rgba(253,243,245,.06);border:1px solid rgba(235,180,191,.2);border-radius:24px;padding:clamp(1.4rem,3vw,2.2rem);display:grid;gap:1.15rem;backdrop-filter:blur(10px)}
-.form label{display:grid;gap:.45rem;font:600 .72rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--blush)}
-.form input,.form textarea{font:400 1rem/1.4 var(--body);color:var(--cream);background:rgba(36,8,7,.55);border:1px solid rgba(235,180,191,.22);border-radius:12px;padding:.85rem 1rem;outline:none;transition:border-color .2s;width:100%}
-.form input:focus,.form textarea:focus{border-color:var(--blush)}
-.form textarea{resize:vertical;min-height:90px}
-.form input::placeholder,.form textarea::placeholder{color:rgba(253,243,245,.35)}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.types{display:flex;flex-wrap:wrap;gap:.5rem}
-.types button{padding:.6rem .95rem;border-radius:99px;border:1px solid rgba(235,180,191,.3);font-size:.86rem;color:var(--blush-2);transition:all .2s}
-.types button[aria-pressed=true]{background:var(--blush);color:var(--wine);border-color:var(--blush)}
-.form .pill{justify-content:center;padding:1.05rem;font-size:.95rem}
-.sent{display:none;gap:1rem}
-.sent.show{display:grid}
-.sent pre{white-space:pre-wrap;font:400 .9rem/1.55 var(--body);background:rgba(36,8,7,.55);border-radius:12px;padding:1rem;color:var(--blush-2)}
-.sent .acts{display:flex;gap:.6rem;flex-wrap:wrap}
-.socials{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.socials{display:grid;grid-template-columns:repeat(3,minmax(0,220px));gap:.8rem;margin-top:1.4rem;text-align:left}
 .social{display:flex;align-items:center;gap:.9rem;padding:1rem 1.1rem;border-radius:16px;border:1px solid rgba(235,180,191,.2);transition:background .25s,transform .25s var(--ease)}
 .social:hover{background:rgba(235,180,191,.08);transform:translateY(-2px)}
 .social svg{width:26px;height:26px;flex:none}
@@ -252,12 +239,12 @@ footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
   .hero .logo{width:min(190px,48vw)}
   .hero-tag{font-size:.98rem}
   .scroll-cue{display:none}
-  .about-grid,.music-grid,.book-grid{grid-template-columns:1fr}
+  .about-grid,.music-grid{grid-template-columns:1fr}
   .collage{max-width:460px;width:100%;margin:0 auto 1rem}
   .side-photo{display:none}
-  .two{grid-template-columns:1fr}
   .gal-head{flex-direction:column;align-items:flex-start;gap:.6rem}
-  .book .lips{position:absolute;right:-6%;top:-1rem;width:120px;opacity:.9;margin:0}
+  .book .lips{top:-4.8rem;right:-2%;width:90px;opacity:.85}
+  .socials{grid-template-columns:1fr;width:100%;max-width:340px}
 }
 @media (max-width:480px){
   .player{padding:.8rem .9rem .8rem .8rem;gap:.85rem}
@@ -282,6 +269,7 @@ footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
   <symbol id="i-ig" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zm0 4.9a4.9 4.9 0 1 0 0 9.8 4.9 4.9 0 0 0 0-9.8zm0 8.1a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.1-9.4a1.15 1.15 0 1 0 0 2.3 1.15 1.15 0 0 0 0-2.3z"/></symbol>
   <symbol id="i-spot" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1.5a10.5 10.5 0 1 0 0 21 10.5 10.5 0 0 0 0-21zm4.8 15.2a.66.66 0 0 1-.9.2c-2.5-1.5-5.6-1.9-9.3-1a.66.66 0 1 1-.3-1.3c4-.9 7.5-.5 10.3 1.2.3.2.4.6.2.9zm1.3-2.9a.82.82 0 0 1-1.1.3c-2.8-1.7-7.1-2.2-10.5-1.2a.82.82 0 1 1-.5-1.6c3.8-1.2 8.6-.6 11.8 1.4.4.2.5.7.3 1.1zm.1-3c-3.4-2-8.9-2.2-12.1-1.2a1 1 0 1 1-.6-1.9c3.7-1.1 9.8-.9 13.7 1.4a1 1 0 0 1-1 1.7z"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.1.3.6 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.3.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.2 1.4z"/></symbol>
+  <symbol id="i-yt" viewBox="0 0 24 24"><path fill="currentColor" d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></symbol>
   <symbol id="i-vol" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></symbol>
   <symbol id="i-mute" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3zm13.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4 2.7 2.7-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4z"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
@@ -408,44 +396,16 @@ footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
 
 <!-- BOOKING -->
 <section class="book sec" id="contratame">
-  <div class="wrap book-grid">
-    <div class="book-copy" data-reveal>
-      <span class="eyebrow">Shows · Eventos · Festivales</span>
-      <h2 class="book-title">Contra<br>tame.</h2>
-      <p class="lead">Contame qué evento tenés en mente y armamos el show ideal. Te respondo a la brevedad.</p>
-      <img class="lips" src="assets/lips.png" alt="" loading="lazy">
-      <div class="socials">
-        <a class="social" href="https://www.instagram.com/russoevelin/" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg><div><b>Instagram</b><span>@russoevelin</span></div></a>
-        <a class="social" href="https://open.spotify.com/artist/0EQFQYU0ztqKrpbFoyfAdl" target="_blank" rel="noopener"><svg><use href="#i-spot"/></svg><div><b>Spotify</b><span>Evelin Russo</span></div></a>
-      </div>
-    </div>
-
-    <div data-reveal>
-      <form class="form" id="form" novalidate>
-        <label>Tu nombre<input name="nombre" required placeholder="¿Cómo te llamás?"></label>
-        <div style="display:grid;gap:.45rem"><span class="eyebrow" style="font-size:.72rem;letter-spacing:.14em">Tipo de evento</span>
-          <div class="types" id="types">
-            <button type="button" aria-pressed="true">Evento privado</button>
-            <button type="button" aria-pressed="false">Corporativo</button>
-            <button type="button" aria-pressed="false">Festival</button>
-            <button type="button" aria-pressed="false">Bar / boliche</button>
-            <button type="button" aria-pressed="false">Otro</button>
-          </div>
-        </div>
-        <div class="two">
-          <label>Fecha<input name="fecha" type="date"></label>
-          <label>Ciudad<input name="ciudad" placeholder="Rosario"></label>
-        </div>
-        <label>Contame más<textarea name="msg" placeholder="Cantidad de invitados, lugar, horario…"></textarea></label>
-        <button class="pill pill-blush" type="submit"><svg><use href="#i-heart"/></svg> Armar mi consulta</button>
-        <div class="sent" id="sent">
-          <pre id="sentText"></pre>
-          <div class="acts">
-            <a class="pill pill-blush" id="sendLink" target="_blank" rel="noopener"></a>
-            <button type="button" class="pill pill-ghost" id="copyBtn">Copiar mensaje</button>
-          </div>
-        </div>
-      </form>
+  <div class="wrap book-inner" data-reveal>
+    <img class="lips" src="assets/lips.png" alt="" loading="lazy">
+    <span class="eyebrow">Shows · Eventos · Festivales</span>
+    <h2 class="book-title">Contratame.</h2>
+    <p class="lead">Contame qué evento tenés en mente y armamos el show ideal. Te respondo a la brevedad.</p>
+    <a class="pill pill-blush wa-btn" id="waBtn" href="#" target="_blank" rel="noopener"><svg><use href="#i-wa"/></svg> Escribime por WhatsApp</a>
+    <div class="socials">
+      <a class="social" href="https://www.instagram.com/russoevelin/" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg><div><b>Instagram</b><span>@russoevelin</span></div></a>
+      <a class="social" href="https://open.spotify.com/artist/0EQFQYU0ztqKrpbFoyfAdl" target="_blank" rel="noopener"><svg><use href="#i-spot"/></svg><div><b>Spotify</b><span>Evelin Russo</span></div></a>
+      <a class="social" href="https://www.youtube.com/c/EvelinRusso" target="_blank" rel="noopener"><svg><use href="#i-yt"/></svg><div><b>YouTube</b><span>Evelin Russo</span></div></a>
     </div>
   </div>
 </section>
@@ -468,7 +428,8 @@ footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
 /* ================= CONFIG — editá estos datos ================= */
 const CONFIG = {
   SONG_TITLE: 'Besitos',          // nombre de la canción del reproductor
-  WHATSAPP: '',                         // ej: '5493415551234' (sin + ni espacios). Vacío = se envía por Instagram
+  WHATSAPP: '5493364317436',            // número sin + ni espacios
+  WA_MESSAGE: '¡Hola Eve! Te escribo desde tu web, me gustaría consultar por un show para mi evento.',
   INSTAGRAM: 'russoevelin',
   SPOTIFY_ARTIST: '0EQFQYU0ztqKrpbFoyfAdl'
 };
@@ -635,46 +596,8 @@ soundBtn.addEventListener('click', () => {
   addEventListener('keydown', e => e.key === 'Escape' && lb.classList.remove('open'));
 })();
 
-/* ---------- booking form ---------- */
-(() => {
-  const types = $$('#types button');
-  types.forEach(b => b.addEventListener('click', () => types.forEach(x => x.setAttribute('aria-pressed', x === b))));
-  const form = $('#form');
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const f = new FormData(form);
-    const nombre = (f.get('nombre') || '').trim();
-    if (!nombre){ form.nombre.focus(); form.nombre.style.borderColor = '#ff8fa3'; return; }
-    const tipo = types.find(b => b.getAttribute('aria-pressed') === 'true').textContent;
-    let fecha = f.get('fecha'); if (fecha){ const [y,m,d] = fecha.split('-'); fecha = `${d}/${m}/${y}`; }
-    const lines = [
-      `¡Hola Evelin! Soy ${nombre} y quiero contratar tu show.`,
-      `• Evento: ${tipo}`,
-      fecha ? `• Fecha: ${fecha}` : '',
-      f.get('ciudad') ? `• Ciudad: ${f.get('ciudad')}` : '',
-      f.get('msg') ? `• Detalles: ${f.get('msg')}` : ''
-    ].filter(Boolean).join('\n');
-    $('#sentText').textContent = lines;
-    const link = $('#sendLink');
-    if (CONFIG.WHATSAPP){
-      link.href = `https://wa.me/${CONFIG.WHATSAPP}?text=${encodeURIComponent(lines)}`;
-      link.innerHTML = '<svg><use href="#i-wa"/></svg> Enviar por WhatsApp';
-    } else {
-      link.href = `https://ig.me/m/${CONFIG.INSTAGRAM}`;
-      link.innerHTML = '<svg><use href="#i-ig"/></svg> Enviar por Instagram';
-    }
-    $('#sent').classList.add('show');
-    $('#sent').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  });
-  $('#sendLink').addEventListener('click', () => {
-    if (!CONFIG.WHATSAPP) navigator.clipboard?.writeText($('#sentText').textContent).catch(() => {});
-  });
-  $('#copyBtn').addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText($('#sentText').textContent); $('#copyBtn').textContent = '¡Copiado!'; }
-    catch(e){ $('#copyBtn').textContent = 'Seleccioná y copiá el texto'; }
-    setTimeout(() => $('#copyBtn').textContent = 'Copiar mensaje', 2200);
-  });
-})();
+/* ---------- whatsapp ---------- */
+$('#waBtn').href = `https://wa.me/${CONFIG.WHATSAPP}?text=${encodeURIComponent(CONFIG.WA_MESSAGE)}`;
 </script>
 </body>
 </html>
