@@ -107,11 +107,12 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;op
 
 /* ---------- MARQUEE ---------- */
 .marquee{background:var(--blush);color:var(--wine);overflow:hidden;padding:1.1rem 0;transform:rotate(-1.2deg);margin:-1.2rem -2rem 0;position:relative;z-index:2;box-shadow:0 20px 50px -20px rgba(0,0,0,.6)}
-.marquee-track{display:flex;gap:2.4rem;width:max-content;animation:mq 40s linear infinite;font:800 clamp(1.4rem,3.2vw,2.4rem)/1 var(--display);text-transform:uppercase;letter-spacing:-.01em}
+.marquee-track{display:flex;gap:2.4rem;width:max-content;animation:mq 34s linear infinite;font:800 clamp(1.4rem,3.2vw,2.4rem)/1 var(--display);text-transform:uppercase;letter-spacing:-.01em}
 .marquee-track span{display:flex;align-items:center;gap:2.4rem;white-space:nowrap}
 .marquee-track .serif{text-transform:none;font-size:1.15em}
 .marquee svg{width:.7em;height:.7em}
 .marquee-track b{font-weight:inherit}
+.mq-g{font-style:normal;font-size:.84em}
 .mq-a{font-family:var(--display);font-weight:800}
 .mq-b{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;font-size:1.2em}
 .mq-c{font-family:'Anton',sans-serif;font-weight:400;letter-spacing:.02em}
@@ -486,9 +487,9 @@ $('#yr').textContent = new Date().getFullYear();
 
 /* ---------- marquee ---------- */
 (() => {
-  const fonts = ['mq-a','mq-b','mq-c','mq-d','mq-e','mq-f'];
-  const one = fonts.map(f => `<span><b class="${f}">Evelin Russo</b><svg><use href="#i-spark"/></svg></span>`).join('');
-  $('#mq').innerHTML = one.repeat(3);
+  const items = [['mq-a','Evelin Russo',0],['mq-e','Pop',1],['mq-c','Reggaeton',1],['mq-d','Cumbia',1]];
+  const one = items.map(([f,t,g]) => `<span>${g ? `<i class="mq-g"><b class="${f}">${t}</b></i>` : `<b class="${f}">${t}</b>`}<svg><use href="#i-spark"/></svg></span>`).join('');
+  $('#mq').innerHTML = one.repeat(6);
 })();
 
 /* ---------- audio player ---------- */
