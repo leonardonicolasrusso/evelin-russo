@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evelin Russo — Cantante · Rosario</title>
+<meta name="description" content="Evelin Russo, cantante de Rosario. Escuchá su música, mirala en vivo y contratá su show.">
+<meta property="og:title" content="Evelin Russo — Cantante · Rosario">
+<meta property="og:description" content="Escuchá su música, mirala en vivo y contratá su show.">
+<meta property="og:image" content="assets/hero.jpg">
+<meta name="theme-color" content="#4C1513">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --wine:#4C1513; --wine-2:#3a0f0e; --wine-3:#240807;
+  --blush:#EBB4BF; --blush-2:#f6d9df; --cream:#fdf3f5;
+  --display:'Bricolage Grotesque',system-ui,sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+  --body:'Inter',system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{overflow-x:clip}
+body{background:var(--wine-3);color:var(--cream);font-family:var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--blush);color:var(--wine)}
+
+/* grain */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.logo{display:block;background:var(--blush);-webkit-mask:url(assets/logo.png) center/contain no-repeat;mask:url(assets/logo.png) center/contain no-repeat;aspect-ratio:1000/948}
+.eyebrow{font:600 .72rem/1 var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--blush)}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:0}
+.wrap{width:min(1200px,100% - 2.5rem);margin-inline:auto}
+
+/* ---------- NAV ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:1rem clamp(1.25rem,3vw,2.5rem);transition:background .4s,backdrop-filter .4s,padding .4s}
+.nav.solid{background:rgba(36,8,7,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding-block:.65rem}
+.nav .logo{width:58px;transition:width .4s}
+.nav.solid .logo{width:46px}
+.nav ul{display:flex;gap:2rem;list-style:none;font-size:.88rem;font-weight:500}
+.nav ul a{opacity:.8;transition:opacity .2s}
+.nav ul a:hover{opacity:1}
+.pill{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.35rem;border-radius:999px;font:600 .88rem/1 var(--body);letter-spacing:.02em;transition:transform .25s var(--ease),background .25s,color .25s,box-shadow .25s}
+.pill:hover{transform:translateY(-2px)}
+.pill-blush{background:var(--blush);color:var(--wine)}
+.pill-blush:hover{box-shadow:0 10px 30px -8px rgba(235,180,191,.6)}
+.pill-ghost{border:1px solid rgba(235,180,191,.45);color:var(--blush)}
+.pill-ghost:hover{background:rgba(235,180,191,.12)}
+.pill svg{width:16px;height:16px}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate}
+.hero-bg{position:absolute;inset:0;z-index:-2}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:62% 22%;transform:scale(1.08);animation:heroIn 2.4s var(--ease) forwards}
+@keyframes heroIn{to{transform:scale(1)}}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(90deg,rgba(36,8,7,.96) 0%,rgba(58,15,14,.82) 32%,rgba(76,21,19,.25) 62%,rgba(76,21,19,0) 80%),
+             linear-gradient(0deg,rgba(36,8,7,.9) 0%,rgba(36,8,7,0) 35%)}
+.hero-inner{width:min(1200px,100% - 2.5rem);margin:0 auto;padding:7rem 0 4.5rem;display:grid;gap:1.6rem;max-width:1200px}
+.hero-copy{max-width:520px;display:grid;gap:1.4rem}
+.hero .logo{width:min(440px,78vw);filter:drop-shadow(0 10px 40px rgba(0,0,0,.35))}
+.hero-tag{font:500 1.05rem/1.5 var(--body);color:var(--blush-2);max-width:30ch}
+.hero-tag .serif{font-size:1.35em;color:var(--blush)}
+.reveal-up{opacity:0;transform:translateY(24px);animation:up 1s var(--ease) forwards}
+@keyframes up{to{opacity:1;transform:none}}
+.d1{animation-delay:.25s}.d2{animation-delay:.45s}.d3{animation-delay:.65s}.d4{animation-delay:.85s}
+
+/* player */
+.player{position:relative;display:grid;grid-template-columns:auto 1fr;gap:1.1rem;align-items:center;padding:1rem 1.2rem 1rem 1rem;border-radius:22px;
+  background:rgba(36,8,7,.45);border:1px solid rgba(235,180,191,.22);backdrop-filter:blur(18px) saturate(1.3);-webkit-backdrop-filter:blur(18px) saturate(1.3);max-width:520px}
+.play{position:relative;width:68px;height:68px;border-radius:50%;background:var(--blush);color:var(--wine);display:grid;place-items:center;transition:transform .25s var(--ease)}
+.play:hover{transform:scale(1.06)}
+.play:active{transform:scale(.96)}
+.play::before,.play::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--blush);animation:ring 2.4s ease-out infinite;pointer-events:none}
+.play::after{animation-delay:1.2s}
+.is-playing .play::before,.is-playing .play::after{animation:none;opacity:0}
+@keyframes ring{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.7);opacity:0}}
+.play svg{width:26px;height:26px}
+.ico-pause{display:none}
+.is-playing .ico-play{display:none}.is-playing .ico-pause{display:block}
+.player-meta{min-width:0;display:grid;gap:.5rem}
+.track-row{display:flex;justify-content:space-between;align-items:baseline;gap:1rem}
+.track-title{font:700 1.02rem/1.2 var(--display);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.track-sub{font-size:.76rem;color:var(--blush);opacity:.85;letter-spacing:.04em}
+.track-time{font:500 .74rem/1 var(--body);font-variant-numeric:tabular-nums;opacity:.7;flex:none}
+.wave{display:flex;align-items:center;gap:2px;height:38px;cursor:pointer;touch-action:none}
+.wave i{flex:1;min-width:2px;border-radius:2px;background:rgba(235,180,191,.28);transform-origin:center;transition:background .15s}
+.wave i.on{background:var(--blush)}
+.player-hint{position:absolute;top:-.7rem;left:5.2rem;font:600 .62rem/1 var(--body);letter-spacing:.16em;text-transform:uppercase;background:var(--blush);color:var(--wine);padding:.32rem .55rem;border-radius:99px;transition:opacity .4s}
+.is-playing .player-hint,.has-played .player-hint{opacity:0}
+.hero-actions{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center}
+.scroll-cue{position:absolute;right:clamp(1.25rem,3vw,2.5rem);bottom:2rem;writing-mode:vertical-rl;font:600 .66rem/1 var(--body);letter-spacing:.3em;text-transform:uppercase;color:var(--blush);opacity:.7;display:flex;align-items:center;gap:.8rem}
+.scroll-cue::after{content:"";width:1px;height:56px;background:linear-gradient(var(--blush),transparent);animation:cue 2s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:scaleY(.4);transform-origin:top}50%{transform:scaleY(1)}}
+
+/* hearts */
+.heart{position:fixed;pointer-events:none;z-index:60;width:18px;height:18px;color:var(--blush);animation:float 1.8s var(--ease) forwards}
+@keyframes float{0%{opacity:0;transform:translate(0,0) scale(.4) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),-160px) scale(1.1) rotate(var(--r))}}
+
+/* ---------- MARQUEE ---------- */
+.marquee{background:var(--blush);color:var(--wine);overflow:hidden;padding:1.1rem 0;transform:rotate(-1.2deg);margin:-1.2rem -2rem 0;position:relative;z-index:2;box-shadow:0 20px 50px -20px rgba(0,0,0,.6)}
+.marquee-track{display:flex;gap:2.4rem;width:max-content;animation:mq 28s linear infinite;font:800 clamp(1.4rem,3.2vw,2.4rem)/1 var(--display);text-transform:uppercase;letter-spacing:-.01em}
+.marquee-track span{display:flex;align-items:center;gap:2.4rem;white-space:nowrap}
+.marquee-track .serif{text-transform:none;font-size:1.15em}
+.marquee svg{width:.7em;height:.7em}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{position:relative}
+.sec{padding:clamp(5rem,11vw,9rem) 0}
+.h2{font:800 clamp(2.4rem,6vw,4.6rem)/.95 var(--display);letter-spacing:-.035em}
+.h2 .serif{font-size:1.08em;color:var(--blush);letter-spacing:-.01em}
+.lead{font-size:1.08rem;line-height:1.7;color:rgba(253,243,245,.78);max-width:46ch}
+[data-reveal]{opacity:0;transform:translateY(40px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+[data-reveal].in{opacity:1;transform:none}
+
+/* about */
+.about{background:var(--wine)}
+.about-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(2.5rem,6vw,6rem);align-items:center}
+.collage{position:relative;aspect-ratio:4/5}
+.collage figure{position:absolute;overflow:hidden;border-radius:18px;box-shadow:0 30px 60px -20px rgba(0,0,0,.55)}
+.collage img{width:100%;height:100%;object-fit:cover}
+.c1{inset:0 22% 12% 0}
+.c2{width:52%;aspect-ratio:2/3;right:0;bottom:0;border:6px solid var(--wine)}
+.collage .lips{position:absolute;width:34%;height:auto;left:-8%;bottom:-6%;z-index:3;filter:drop-shadow(0 10px 20px rgba(0,0,0,.4))}
+.about-copy{display:grid;gap:1.6rem}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem}
+.chip{padding:.6rem 1rem;border-radius:99px;border:1px solid rgba(235,180,191,.35);font-size:.86rem;color:var(--blush-2)}
+
+/* live */
+.live{background:var(--wine-3);overflow:hidden}
+.live-head{text-align:center;display:grid;gap:1.2rem;justify-items:center;margin-bottom:3.5rem}
+.live-stage{position:relative;display:grid;place-items:center}
+.phone{position:relative;width:min(380px,82vw);aspect-ratio:9/16;border-radius:28px;overflow:hidden;background:#000;box-shadow:0 0 0 1px rgba(235,180,191,.25),0 40px 120px -20px rgba(235,180,191,.28),0 30px 60px -10px rgba(0,0,0,.7);z-index:2}
+.phone video{width:100%;height:100%;object-fit:cover}
+.phone .live-badge{position:absolute;top:1rem;left:1rem;display:flex;align-items:center;gap:.45rem;font:700 .66rem/1 var(--body);letter-spacing:.16em;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);padding:.45rem .7rem;border-radius:99px}
+.live-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:#ff4d6d;animation:blink 1.4s infinite}
+@keyframes blink{50%{opacity:.25}}
+.sound{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:.5rem;background:var(--blush);color:var(--wine);font:600 .82rem/1 var(--body);padding:.75rem 1.1rem;border-radius:99px;white-space:nowrap;box-shadow:0 10px 30px -8px rgba(0,0,0,.5)}
+.sound svg{width:16px;height:16px}
+.side-photo{position:absolute;width:min(250px,22vw);aspect-ratio:2/3;border-radius:18px;overflow:hidden;opacity:.9;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+.side-photo img{width:100%;height:100%;object-fit:cover}
+.sp1{left:4%;top:8%;transform:rotate(-7deg)}
+.sp2{right:4%;bottom:6%;transform:rotate(6deg)}
+.live-cta{display:flex;justify-content:center;margin-top:3rem}
+
+/* music */
+.music{background:linear-gradient(180deg,var(--wine-3),var(--wine))}
+.music-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(2rem,5vw,5rem);align-items:center}
+.music-copy{display:grid;gap:1.5rem}
+.spot-frame{border-radius:20px;overflow:hidden;min-height:352px;background:rgba(0,0,0,.25)}
+.spot-frame iframe{width:100%;height:352px;border:0;display:block}
+.spot-card{position:relative;border-radius:20px;overflow:hidden;min-height:352px;display:grid;grid-template-rows:1fr auto;background:linear-gradient(160deg,#5a1b18,#2a0a09);border:1px solid rgba(235,180,191,.18)}
+.spot-card .cover{position:relative;overflow:hidden}
+.spot-card .cover img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;opacity:.7}
+.spot-card .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#2a0a09 0%,transparent 70%)}
+.spot-card .cover .logo{position:absolute;left:1.5rem;bottom:1rem;width:150px;z-index:2}
+.spot-card .row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.2rem 1.5rem 1.5rem}
+.spot-card small{display:block;font-size:.78rem;opacity:.7;margin-top:.25rem}
+.spot-btn{background:#1ED760;color:#0b0b0b}
+.spot-btn:hover{box-shadow:0 10px 30px -8px rgba(30,215,96,.55)}
+
+/* gallery */
+.gallery{background:var(--wine);padding-bottom:clamp(5rem,9vw,7rem)}
+.gal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.5rem}
+.gal-head p{font-size:.85rem;opacity:.65}
+.strip{display:flex;gap:1rem;overflow-x:auto;padding:0 max(1.25rem,calc((100vw - 1200px)/2));scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab}
+.strip::-webkit-scrollbar{display:none}
+.strip.drag{cursor:grabbing;scroll-snap-type:none}
+.strip figure{flex:none;width:clamp(230px,26vw,340px);aspect-ratio:2/3;border-radius:16px;overflow:hidden;scroll-snap-align:center}
+.strip figure.wide{width:clamp(340px,42vw,540px);aspect-ratio:3/2;align-self:center}
+.strip img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease);user-select:none;-webkit-user-drag:none}
+.strip figure:hover img{transform:scale(1.05)}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:90;background:rgba(20,4,4,.92);display:none;place-items:center;padding:2rem}
+.lb.open{display:grid}
+.lb img{max-height:88vh;max-width:92vw;border-radius:14px}
+.lb button{position:absolute;top:1.2rem;right:1.4rem;font:600 .8rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--blush)}
+
+/* booking */
+.book{background:radial-gradient(120% 90% at 85% 0%,#7a2a27 0%,var(--wine) 45%,var(--wine-3) 100%);overflow:hidden}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2.5rem,6vw,6rem);align-items:start}
+.book-title{font:800 clamp(3.4rem,10vw,8rem)/.85 var(--display);letter-spacing:-.05em;color:var(--blush)}
+.book-copy{display:grid;gap:1.6rem;position:relative}
+.book .lips{width:min(220px,40vw);height:auto;animation:bob 6s ease-in-out infinite;margin-top:1rem}
+@keyframes bob{50%{transform:translateY(-12px) rotate(-4deg)}}
+.form{background:rgba(253,243,245,.06);border:1px solid rgba(235,180,191,.2);border-radius:24px;padding:clamp(1.4rem,3vw,2.2rem);display:grid;gap:1.15rem;backdrop-filter:blur(10px)}
+.form label{display:grid;gap:.45rem;font:600 .72rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--blush)}
+.form input,.form textarea{font:400 1rem/1.4 var(--body);color:var(--cream);background:rgba(36,8,7,.55);border:1px solid rgba(235,180,191,.22);border-radius:12px;padding:.85rem 1rem;outline:none;transition:border-color .2s;width:100%}
+.form input:focus,.form textarea:focus{border-color:var(--blush)}
+.form textarea{resize:vertical;min-height:90px}
+.form input::placeholder,.form textarea::placeholder{color:rgba(253,243,245,.35)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.types{display:flex;flex-wrap:wrap;gap:.5rem}
+.types button{padding:.6rem .95rem;border-radius:99px;border:1px solid rgba(235,180,191,.3);font-size:.86rem;color:var(--blush-2);transition:all .2s}
+.types button[aria-pressed=true]{background:var(--blush);color:var(--wine);border-color:var(--blush)}
+.form .pill{justify-content:center;padding:1.05rem;font-size:.95rem}
+.sent{display:none;gap:1rem}
+.sent.show{display:grid}
+.sent pre{white-space:pre-wrap;font:400 .9rem/1.55 var(--body);background:rgba(36,8,7,.55);border-radius:12px;padding:1rem;color:var(--blush-2)}
+.sent .acts{display:flex;gap:.6rem;flex-wrap:wrap}
+.socials{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.social{display:flex;align-items:center;gap:.9rem;padding:1rem 1.1rem;border-radius:16px;border:1px solid rgba(235,180,191,.2);transition:background .25s,transform .25s var(--ease)}
+.social:hover{background:rgba(235,180,191,.08);transform:translateY(-2px)}
+.social svg{width:26px;height:26px;flex:none}
+.social b{display:block;font:700 .95rem/1.2 var(--display)}
+.social span{font-size:.78rem;opacity:.65}
+
+footer{background:var(--wine-3);padding:4rem 0 2.5rem;text-align:center;display:grid;justify-items:center;gap:1.4rem}
+footer .logo{width:120px;opacity:.9}
+footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
+
+/* sticky mini player */
+.mini{position:fixed;left:50%;bottom:1rem;z-index:55;transform:translate(-50%,140%);transition:transform .6s var(--ease);display:flex;align-items:center;gap:.85rem;padding:.55rem .6rem .55rem .55rem;border-radius:999px;background:rgba(36,8,7,.82);border:1px solid rgba(235,180,191,.25);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 20px 50px -15px rgba(0,0,0,.7);width:min(520px,calc(100vw - 1.5rem))}
+.mini.show{transform:translate(-50%,0)}
+.mini .play{width:44px;height:44px;flex:none}
+.mini .play::before,.mini .play::after{display:none}
+.mini .play svg{width:18px;height:18px}
+.mini-meta{flex:1;min-width:0;display:grid;gap:.4rem}
+.mini-meta b{font:700 .86rem/1 var(--display);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini-bar{height:3px;border-radius:3px;background:rgba(235,180,191,.22);overflow:hidden}
+.mini-bar i{display:block;height:100%;width:0;background:var(--blush)}
+.mini .pill{padding:.75rem 1.1rem;font-size:.82rem;flex:none}
+
+/* responsive */
+@media (max-width:900px){
+  .nav ul{display:none}
+  .hero::before{background:linear-gradient(0deg,rgba(36,8,7,.98) 0%,rgba(36,8,7,.85) 34%,rgba(76,21,19,.2) 62%,rgba(76,21,19,.1) 100%)}
+  .hero-bg{bottom:34%}
+  .hero-bg img{object-position:56% 18%}
+  .hero::before{background:linear-gradient(0deg,var(--wine-3) 0%,var(--wine-3) 36%,rgba(36,8,7,.55) 50%,rgba(76,21,19,0) 70%),linear-gradient(180deg,rgba(36,8,7,.55) 0%,rgba(36,8,7,0) 18%)}
+  .hero-inner{padding:6rem 0 1.8rem;gap:1.2rem}
+  .hero-copy{gap:1rem}
+  .hero .logo{width:min(190px,48vw)}
+  .hero-tag{font-size:.98rem}
+  .scroll-cue{display:none}
+  .about-grid,.music-grid,.book-grid{grid-template-columns:1fr}
+  .collage{max-width:460px;width:100%;margin:0 auto 1rem}
+  .side-photo{display:none}
+  .two{grid-template-columns:1fr}
+  .gal-head{flex-direction:column;align-items:flex-start;gap:.6rem}
+  .book .lips{position:absolute;right:-6%;top:-1rem;width:120px;opacity:.9;margin:0}
+}
+@media (max-width:480px){
+  .player{padding:.8rem .9rem .8rem .8rem;gap:.85rem}
+  .play{width:58px;height:58px}
+  .player-hint{left:4.4rem}
+  .socials{grid-template-columns:1fr}
+  .mini .pill span{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  [data-reveal],.reveal-up{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-heart" viewBox="0 0 24 24"><path fill="currentColor" d="M12 21s-7.5-4.6-9.6-9.2C.9 8.3 3 4.5 6.7 4.5c2.1 0 3.6 1.2 4.3 2.4.7-1.2 2.2-2.4 4.3-2.4 3.7 0 5.8 3.8 4.3 7.3C19.5 16.4 12 21 12 21z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5.5v13a1 1 0 0 0 1.5.86l10.6-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path fill="currentColor" d="M7 5h3.2v14H7zM13.8 5H17v14h-3.2z"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0c.6 6.6 5.4 11.4 12 12-6.6.6-11.4 5.4-12 12-.6-6.6-5.4-11.4-12-12C6.6 11.4 11.4 6.6 12 0z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zm0 4.9a4.9 4.9 0 1 0 0 9.8 4.9 4.9 0 0 0 0-9.8zm0 8.1a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.1-9.4a1.15 1.15 0 1 0 0 2.3 1.15 1.15 0 0 0 0-2.3z"/></symbol>
+  <symbol id="i-spot" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1.5a10.5 10.5 0 1 0 0 21 10.5 10.5 0 0 0 0-21zm4.8 15.2a.66.66 0 0 1-.9.2c-2.5-1.5-5.6-1.9-9.3-1a.66.66 0 1 1-.3-1.3c4-.9 7.5-.5 10.3 1.2.3.2.4.6.2.9zm1.3-2.9a.82.82 0 0 1-1.1.3c-2.8-1.7-7.1-2.2-10.5-1.2a.82.82 0 1 1-.5-1.6c3.8-1.2 8.6-.6 11.8 1.4.4.2.5.7.3 1.1zm.1-3c-3.4-2-8.9-2.2-12.1-1.2a1 1 0 1 1-.6-1.9c3.7-1.1 9.8-.9 13.7 1.4a1 1 0 0 1-1 1.7z"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.3-.5 0-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.1.3.6 1.1 1.4 1.8 1 .9 1.8 1.1 2 1.3.3.1.4.1.6-.1l.8-1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.2 1.4z"/></symbol>
+  <symbol id="i-vol" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></symbol>
+  <symbol id="i-mute" viewBox="0 0 24 24"><path fill="currentColor" d="M3 9v6h4l5 4V5L7 9H3zm13.6 3 2.7-2.7-1.4-1.4-2.7 2.7-2.7-2.7-1.4 1.4 2.7 2.7-2.7 2.7 1.4 1.4 2.7-2.7 2.7 2.7 1.4-1.4z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</svg>
+
+<nav class="nav" id="nav">
+  <a href="#top" aria-label="Evelin Russo"><span class="logo"></span></a>
+  <ul>
+    <li><a href="#conoceme">Conoceme</a></li>
+    <li><a href="#en-vivo">En vivo</a></li>
+    <li><a href="#musica">Música</a></li>
+    <li><a href="#galeria">Galería</a></li>
+  </ul>
+  <a class="pill pill-blush" href="#contratame">Contratame</a>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-bg"><img src="assets/hero.jpg" alt="Evelin Russo cantando en vivo" fetchpriority="high"></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow reveal-up">Cantante · Rosario, Argentina</span>
+      <h1 class="reveal-up d1"><span class="logo" role="img" aria-label="Evelin Russo"></span></h1>
+      <p class="hero-tag reveal-up d2">Pop, brillo y escenario. <span class="serif">Dale play y conocela.</span></p>
+
+      <div class="player reveal-up d3" id="player">
+        <span class="player-hint">Escuchá ahora</span>
+        <button class="play" data-toggle aria-label="Reproducir">
+          <svg class="ico-play"><use href="#i-play"/></svg><svg class="ico-pause"><use href="#i-pause"/></svg>
+        </button>
+        <div class="player-meta">
+          <div class="track-row">
+            <div style="min-width:0"><div class="track-title" data-title></div><div class="track-sub">Evelin Russo</div></div>
+            <span class="track-time" id="time">0:00</span>
+          </div>
+          <div class="wave" id="wave" aria-label="Progreso de la canción" role="slider" tabindex="0" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+        </div>
+      </div>
+
+      <div class="hero-actions reveal-up d4">
+        <a class="pill pill-ghost" href="#conoceme">Más sobre mí <svg><use href="#i-arrow"/></svg></a>
+        <a class="pill pill-blush" href="#contratame">Contratame</a>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue">Scroll</div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="mq"></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about sec" id="conoceme">
+  <div class="wrap about-grid">
+    <div class="collage" data-reveal>
+      <figure class="c1" data-parallax="-0.06"><img src="assets/pink-2.jpg" alt="Evelin Russo en el escenario" loading="lazy"></figure>
+      <figure class="c2" data-parallax="0.08"><img src="assets/white-2.jpg" alt="Evelin Russo cantando" loading="lazy"></figure>
+      <img class="lips" src="assets/lips.png" alt="" loading="lazy">
+    </div>
+    <div class="about-copy" data-reveal>
+      <span class="eyebrow">Conoceme</span>
+      <h2 class="h2">Una voz de Rosario <span class="serif">hecha para el escenario.</span></h2>
+      <p class="lead">Soy Evelin Russo, cantante rosarina. Me subo al escenario con banda en vivo y canciones para cantar fuerte, bailar y pasarla bien de principio a fin.</p>
+      <p class="lead">Cada show es una fiesta: energía, brillo y mucha conexión con la gente.</p>
+      <div class="chips">
+        <span class="chip">Show con banda en vivo</span>
+        <span class="chip">Festivales y escenarios</span>
+        <span class="chip">Eventos privados</span>
+        <span class="chip">Eventos corporativos</span>
+      </div>
+      <div><a class="pill pill-ghost" href="#en-vivo">Mirame en vivo <svg><use href="#i-arrow"/></svg></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE -->
+<section class="live sec" id="en-vivo">
+  <div class="wrap live-head" data-reveal>
+    <span class="eyebrow">En vivo</span>
+    <h2 class="h2">Así se vive <span class="serif">un show.</span></h2>
+  </div>
+  <div class="live-stage">
+    <figure class="side-photo sp1" data-parallax="-0.1"><img src="assets/live-1.jpg" alt="" loading="lazy"></figure>
+    <figure class="side-photo sp2" data-parallax="0.1"><img src="assets/white-3.jpg" alt="" loading="lazy"></figure>
+    <div class="phone" data-reveal>
+      <video id="vid" src="assets/en-vivo.mp4" poster="assets/en-vivo-poster.jpg" muted loop playsinline preload="metadata"></video>
+      <span class="live-badge">EN VIVO</span>
+      <button class="sound" id="sound"><svg><use href="#i-mute"/></svg><span>Activar sonido</span></button>
+    </div>
+  </div>
+  <div class="live-cta" data-reveal><a class="pill pill-blush" href="#contratame">Quiero este show en mi evento <svg><use href="#i-arrow"/></svg></a></div>
+</section>
+
+<!-- MUSIC -->
+<section class="music sec" id="musica">
+  <div class="wrap music-grid">
+    <div class="music-copy" data-reveal>
+      <span class="eyebrow">Música</span>
+      <h2 class="h2">Escuchala <span class="serif">en Spotify.</span></h2>
+      <p class="lead">Seguila para no perderte ningún lanzamiento.</p>
+      <div><a class="pill spot-btn" href="https://open.spotify.com/artist/0EQFQYU0ztqKrpbFoyfAdl" target="_blank" rel="noopener"><svg><use href="#i-spot"/></svg> Seguir en Spotify</a></div>
+    </div>
+    <div data-reveal id="spotHolder">
+      <div class="spot-card">
+        <div class="cover"><img src="assets/pink-1.jpg" alt="" loading="lazy"><span class="logo"></span></div>
+        <div class="row">
+          <div><b class="track-title" data-title></b><small>Evelin Russo · Artista en Spotify</small></div>
+          <a class="pill spot-btn" href="https://open.spotify.com/artist/0EQFQYU0ztqKrpbFoyfAdl" target="_blank" rel="noopener"><svg><use href="#i-spot"/></svg> Abrir</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="galeria">
+  <div class="wrap gal-head" data-reveal>
+    <h2 class="h2">Galería</h2>
+    <p>Arrastrá para ver más →</p>
+  </div>
+  <div class="strip" id="strip">
+    <figure><img src="assets/live-2.jpg" alt="Evelin Russo en vivo" loading="lazy"></figure>
+    <figure class="wide"><img src="assets/pink-1.jpg" alt="Evelin Russo en vivo" loading="lazy"></figure>
+    <figure><img src="assets/white-1.jpg" alt="Evelin Russo en vivo" loading="lazy"></figure>
+    <figure><img src="assets/live-3.jpg" alt="Evelin Russo en vivo" loading="lazy"></figure>
+    <figure><img src="assets/live-5.jpg" alt="Evelin Russo en vivo" loading="lazy"></figure>
+    <figure><img src="assets/white-3.jpg" alt="Evelin Russo en vivo" loading="lazy"></figure>
+    <figure><img src="assets/live-4.jpg" alt="Evelin Russo en vivo" loading="lazy"></figure>
+    <figure><img src="assets/pink-2.jpg" alt="Evelin Russo en vivo" loading="lazy"></figure>
+  </div>
+</section>
+<div class="lb" id="lb"><button id="lbClose">Cerrar ✕</button><img alt=""></div>
+
+<!-- BOOKING -->
+<section class="book sec" id="contratame">
+  <div class="wrap book-grid">
+    <div class="book-copy" data-reveal>
+      <span class="eyebrow">Shows · Eventos · Festivales</span>
+      <h2 class="book-title">Contra<br>tame.</h2>
+      <p class="lead">Contame qué evento tenés en mente y armamos el show ideal. Te respondo a la brevedad.</p>
+      <img class="lips" src="assets/lips.png" alt="" loading="lazy">
+      <div class="socials">
+        <a class="social" href="https://www.instagram.com/russoevelin/" target="_blank" rel="noopener"><svg><use href="#i-ig"/></svg><div><b>Instagram</b><span>@russoevelin</span></div></a>
+        <a class="social" href="https://open.spotify.com/artist/0EQFQYU0ztqKrpbFoyfAdl" target="_blank" rel="noopener"><svg><use href="#i-spot"/></svg><div><b>Spotify</b><span>Evelin Russo</span></div></a>
+      </div>
+    </div>
+
+    <div data-reveal>
+      <form class="form" id="form" novalidate>
+        <label>Tu nombre<input name="nombre" required placeholder="¿Cómo te llamás?"></label>
+        <div style="display:grid;gap:.45rem"><span class="eyebrow" style="font-size:.72rem;letter-spacing:.14em">Tipo de evento</span>
+          <div class="types" id="types">
+            <button type="button" aria-pressed="true">Evento privado</button>
+            <button type="button" aria-pressed="false">Corporativo</button>
+            <button type="button" aria-pressed="false">Festival</button>
+            <button type="button" aria-pressed="false">Bar / boliche</button>
+            <button type="button" aria-pressed="false">Otro</button>
+          </div>
+        </div>
+        <div class="two">
+          <label>Fecha<input name="fecha" type="date"></label>
+          <label>Ciudad<input name="ciudad" placeholder="Rosario"></label>
+        </div>
+        <label>Contame más<textarea name="msg" placeholder="Cantidad de invitados, lugar, horario…"></textarea></label>
+        <button class="pill pill-blush" type="submit"><svg><use href="#i-heart"/></svg> Armar mi consulta</button>
+        <div class="sent" id="sent">
+          <pre id="sentText"></pre>
+          <div class="acts">
+            <a class="pill pill-blush" id="sendLink" target="_blank" rel="noopener"></a>
+            <button type="button" class="pill pill-ghost" id="copyBtn">Copiar mensaje</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="logo"></span>
+  <p>© <span id="yr"></span> Evelin Russo · Rosario, Argentina</p>
+</footer>
+
+<!-- sticky mini player -->
+<div class="mini" id="mini">
+  <button class="play" data-toggle aria-label="Reproducir"><svg class="ico-play"><use href="#i-play"/></svg><svg class="ico-pause"><use href="#i-pause"/></svg></button>
+  <div class="mini-meta"><b data-title></b><div class="mini-bar"><i id="miniBar"></i></div></div>
+  <a class="pill pill-blush" href="#contratame"><svg><use href="#i-heart"/></svg><span>Contratame</span></a>
+</div>
+
+<audio id="audio" src="assets/single.mp3" preload="metadata"></audio>
+
+<script>
+/* ================= CONFIG — editá estos datos ================= */
+const CONFIG = {
+  SONG_TITLE: 'Nuevo single',          // nombre de la canción del reproductor
+  WHATSAPP: '',                         // ej: '5493415551234' (sin + ni espacios). Vacío = se envía por Instagram
+  INSTAGRAM: 'russoevelin',
+  SPOTIFY_ARTIST: '0EQFQYU0ztqKrpbFoyfAdl'
+};
+const PEAKS = [0.04,0.17,0.1,0.17,0.29,0.33,0.41,0.27,0.21,0.24,0.32,0.78,0.81,0.94,0.8,0.76,0.87,0.81,0.48,0.81,0.65,0.75,0.73,0.56,0.63,0.64,0.69,0.24,0.22,0.23,0.29,0.3,0.25,0.27,0.22,0.86,0.88,0.81,0.8,0.79,0.93,0.25,0.04,0.37,1.0,0.79,0.87,0.76,0.71,0.62,0.74,0.82,0.88,0.97,0.49,0.39,0.11,0.32,0.63,0.63,0.72,0.04,0.04,0.04];
+
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+document.querySelectorAll('[data-title]').forEach(e => e.textContent = CONFIG.SONG_TITLE);
+$('#yr').textContent = new Date().getFullYear();
+
+/* ---------- marquee ---------- */
+(() => {
+  const words = ['Evelin Russo','<span class="serif">en vivo</span>','Rosario','<span class="serif">pop &amp; brillo</span>','Contratame'];
+  const one = words.map(w => `<span>${w}<svg><use href="#i-spark"/></svg></span>`).join('');
+  $('#mq').innerHTML = one + one + one + one;
+})();
+
+/* ---------- audio player ---------- */
+const audio = $('#audio'), wave = $('#wave'), timeEl = $('#time'), player = $('#player'), mini = $('#mini');
+const bars = PEAKS.map(p => { const i = document.createElement('i'); i.style.height = Math.max(10, p * 100) + '%'; wave.appendChild(i); return i; });
+const fmt = s => isFinite(s) ? Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0') : '0:00';
+let actx, analyser, freq, raf;
+
+function setPlaying(on){
+  document.body.classList.toggle('is-playing', on);
+  if (on) document.body.classList.add('has-played');
+  $$('[data-toggle]').forEach(b => b.setAttribute('aria-label', on ? 'Pausar' : 'Reproducir'));
+}
+function initAnalyser(){
+  if (actx) return;
+  if (!/^https?:$/.test(location.protocol)) return; // file:// → sin analizador (si no, Chrome silencia el audio)
+  try{
+    actx = new (window.AudioContext || window.webkitAudioContext)();
+    const src = actx.createMediaElementSource(audio);
+    analyser = actx.createAnalyser(); analyser.fftSize = 128;
+    src.connect(analyser); analyser.connect(actx.destination);
+    freq = new Uint8Array(analyser.frequencyBinCount);
+  }catch(e){ analyser = null; }
+}
+function loop(){
+  const pct = audio.duration ? audio.currentTime / audio.duration : 0;
+  const n = Math.floor(pct * bars.length);
+  bars.forEach((b, i) => b.classList.toggle('on', i < n));
+  $('#miniBar').style.width = (pct * 100) + '%';
+  timeEl.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+  wave.setAttribute('aria-valuenow', Math.round(pct * 100));
+  if (analyser && !audio.paused){
+    analyser.getByteFrequencyData(freq);
+    bars.forEach((b, i) => { const v = freq[(i * 3) % freq.length] / 255; b.style.transform = `scaleY(${0.55 + v * 0.75})`; });
+  } else bars.forEach(b => b.style.transform = '');
+  raf = requestAnimationFrame(loop);
+}
+async function toggle(e){
+  if (audio.paused){
+    initAnalyser();
+    try{ if (actx && actx.state === 'suspended') await actx.resume(); await audio.play(); }
+    catch(err){ return; }
+    hearts(e && e.currentTarget);
+    const v = $('#vid'); if (!v.muted){ v.muted = true; syncSound(); }
+  } else audio.pause();
+}
+$$('[data-toggle]').forEach(b => b.addEventListener('click', toggle));
+audio.addEventListener('play', () => { setPlaying(true); cancelAnimationFrame(raf); loop(); });
+audio.addEventListener('pause', () => setPlaying(false));
+audio.addEventListener('ended', () => setPlaying(false));
+audio.addEventListener('loadedmetadata', () => timeEl.textContent = '0:00 / ' + fmt(audio.duration));
+loop();
+
+function seekFrom(x){
+  const r = wave.getBoundingClientRect();
+  const p = Math.min(1, Math.max(0, (x - r.left) / r.width));
+  if (audio.duration) audio.currentTime = p * audio.duration;
+}
+let scrubbing = false;
+wave.addEventListener('pointerdown', e => { scrubbing = true; wave.setPointerCapture(e.pointerId); seekFrom(e.clientX); if (audio.paused) toggle(); });
+wave.addEventListener('pointermove', e => scrubbing && seekFrom(e.clientX));
+wave.addEventListener('pointerup', () => scrubbing = false);
+wave.addEventListener('keydown', e => {
+  if (!audio.duration) return;
+  if (e.key === 'ArrowRight') audio.currentTime = Math.min(audio.duration, audio.currentTime + 5);
+  if (e.key === 'ArrowLeft') audio.currentTime = Math.max(0, audio.currentTime - 5);
+  if (e.key === ' ' || e.key === 'Enter'){ e.preventDefault(); toggle(); }
+});
+
+/* hearts burst */
+function hearts(btn){
+  if (!btn || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const r = btn.getBoundingClientRect();
+  for (let i = 0; i < 9; i++){
+    const h = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    h.setAttribute('class', 'heart'); h.innerHTML = '<use href="#i-heart"/>';
+    h.style.left = (r.left + r.width / 2 - 9 + (Math.random() * 30 - 15)) + 'px';
+    h.style.top = (r.top + r.height / 2 - 9) + 'px';
+    h.style.setProperty('--dx', (Math.random() * 140 - 70) + 'px');
+    h.style.setProperty('--r', (Math.random() * 60 - 30) + 'deg');
+    h.style.animationDelay = (i * 60) + 'ms';
+    h.style.width = h.style.height = (12 + Math.random() * 14) + 'px';
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 2400);
+  }
+}
+
+/* ---------- nav + mini player visibility ---------- */
+const hero = $('#top'), nav = $('#nav');
+new IntersectionObserver(([en]) => {
+  nav.classList.toggle('solid', !en.isIntersecting);
+  mini.classList.toggle('show', !en.isIntersecting && !nearBooking);
+}, { threshold: 0.12 }).observe(hero);
+let nearBooking = false;
+new IntersectionObserver(([en]) => {
+  nearBooking = en.isIntersecting;
+  const heroGone = hero.getBoundingClientRect().bottom < innerHeight * 0.12;
+  mini.classList.toggle('show', heroGone && !nearBooking);
+}, { threshold: 0.15 }).observe($('#contratame'));
+window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 40), { passive: true });
+
+/* ---------- reveal + parallax ---------- */
+const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } }), { threshold: 0.15 });
+$$('[data-reveal]').forEach(el => ro.observe(el));
+const px = $$('[data-parallax]');
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(() => {
+      px.forEach(el => {
+        const r = el.getBoundingClientRect(), c = r.top + r.height / 2 - innerHeight / 2;
+        const base = el.classList.contains('sp1') ? 'rotate(-7deg) ' : el.classList.contains('sp2') ? 'rotate(6deg) ' : '';
+        el.style.transform = base + `translateY(${c * parseFloat(el.dataset.parallax)}px)`;
+      });
+      ticking = false;
+    });
+  }, { passive: true });
+}
+
+/* ---------- live video ---------- */
+const vid = $('#vid'), soundBtn = $('#sound');
+new IntersectionObserver(([en]) => { if (en.isIntersecting) vid.play().catch(() => {}); else vid.pause(); }, { threshold: 0.35 }).observe(vid);
+function syncSound(){
+  soundBtn.innerHTML = vid.muted ? '<svg><use href="#i-mute"/></svg><span>Activar sonido</span>' : '<svg><use href="#i-vol"/></svg><span>Silenciar</span>';
+}
+soundBtn.addEventListener('click', () => {
+  vid.muted = !vid.muted;
+  if (!vid.muted){ audio.pause(); if (vid.paused) vid.play().catch(() => {}); }
+  syncSound();
+});
+
+/* ---------- spotify embed (works on your own domain; sandboxed previews show the card) ---------- */
+(() => {
+  let topLevel = false; try { topLevel = window.self === window.top; } catch(e) {}
+  if (!topLevel) return;
+  const holder = $('#spotHolder');
+  holder.innerHTML = `<div class="spot-frame"><iframe src="https://open.spotify.com/embed/artist/${CONFIG.SPOTIFY_ARTIST}?utm_source=generator&theme=0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Evelin Russo en Spotify"></iframe></div>`;
+})();
+
+/* ---------- gallery drag + lightbox ---------- */
+(() => {
+  const s = $('#strip'); let down = false, sx = 0, sl = 0, moved = 0;
+  s.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; moved = 0; sx = e.clientX; sl = s.scrollLeft; s.classList.add('drag'); });
+  addEventListener('pointermove', e => { if (!down) return; const d = e.clientX - sx; moved = Math.abs(d); s.scrollLeft = sl - d; });
+  addEventListener('pointerup', () => { down = false; s.classList.remove('drag'); });
+  const lb = $('#lb'), lbi = lb.querySelector('img');
+  s.addEventListener('click', e => { const img = e.target.closest('img'); if (!img || moved > 6) return; lbi.src = img.src; lb.classList.add('open'); });
+  lb.addEventListener('click', e => { if (e.target !== lbi) lb.classList.remove('open'); });
+  addEventListener('keydown', e => e.key === 'Escape' && lb.classList.remove('open'));
+})();
+
+/* ---------- booking form ---------- */
+(() => {
+  const types = $$('#types button');
+  types.forEach(b => b.addEventListener('click', () => types.forEach(x => x.setAttribute('aria-pressed', x === b))));
+  const form = $('#form');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const f = new FormData(form);
+    const nombre = (f.get('nombre') || '').trim();
+    if (!nombre){ form.nombre.focus(); form.nombre.style.borderColor = '#ff8fa3'; return; }
+    const tipo = types.find(b => b.getAttribute('aria-pressed') === 'true').textContent;
+    let fecha = f.get('fecha'); if (fecha){ const [y,m,d] = fecha.split('-'); fecha = `${d}/${m}/${y}`; }
+    const lines = [
+      `¡Hola Evelin! Soy ${nombre} y quiero contratar tu show.`,
+      `• Evento: ${tipo}`,
+      fecha ? `• Fecha: ${fecha}` : '',
+      f.get('ciudad') ? `• Ciudad: ${f.get('ciudad')}` : '',
+      f.get('msg') ? `• Detalles: ${f.get('msg')}` : ''
+    ].filter(Boolean).join('\n');
+    $('#sentText').textContent = lines;
+    const link = $('#sendLink');
+    if (CONFIG.WHATSAPP){
+      link.href = `https://wa.me/${CONFIG.WHATSAPP}?text=${encodeURIComponent(lines)}`;
+      link.innerHTML = '<svg><use href="#i-wa"/></svg> Enviar por WhatsApp';
+    } else {
+      link.href = `https://ig.me/m/${CONFIG.INSTAGRAM}`;
+      link.innerHTML = '<svg><use href="#i-ig"/></svg> Enviar por Instagram';
+    }
+    $('#sent').classList.add('show');
+    $('#sent').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+  $('#sendLink').addEventListener('click', () => {
+    if (!CONFIG.WHATSAPP) navigator.clipboard?.writeText($('#sentText').textContent).catch(() => {});
+  });
+  $('#copyBtn').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText($('#sentText').textContent); $('#copyBtn').textContent = '¡Copiado!'; }
+    catch(e){ $('#copyBtn').textContent = 'Seleccioná y copiá el texto'; }
+    setTimeout(() => $('#copyBtn').textContent = 'Copiar mensaje', 2200);
+  });
+})();
+</script>
+</body>
+</html>
