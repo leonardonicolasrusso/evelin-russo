@@ -195,7 +195,11 @@ section{position:relative}
 /* gallery */
 .gallery{background:var(--wine);padding-bottom:clamp(5rem,9vw,7rem)}
 .gal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;margin-bottom:2.5rem}
-.gal-head p{font-size:.85rem;opacity:.65}
+.gal-nav{display:flex;gap:.6rem}
+.gal-btn{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(235,180,191,.45);color:var(--blush);transition:background .25s,color .25s,opacity .25s,transform .25s var(--ease)}
+.gal-btn:hover:not(:disabled){background:var(--blush);color:var(--wine);transform:translateY(-2px)}
+.gal-btn:disabled{opacity:.3;cursor:default}
+.gal-btn svg{width:20px;height:20px}
 .strip{display:flex;gap:1rem;overflow-x:auto;padding:0 max(1.25rem,calc((100vw - 1200px)/2));scroll-snap-type:x mandatory;scrollbar-width:none;cursor:grab}
 .strip::-webkit-scrollbar{display:none}
 .strip.drag{cursor:grabbing;scroll-snap-type:none}
@@ -258,7 +262,8 @@ footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
   .about-grid,.music-grid{grid-template-columns:1fr}
   .collage{max-width:460px;width:100%;margin:0 auto 1rem}
   .side-photo{display:none}
-  .gal-head{flex-direction:column;align-items:flex-start;gap:.6rem}
+  .gal-head{align-items:center}
+  .gal-btn{width:44px;height:44px}
   .book .lips{top:-4.8rem;right:-2%;width:90px;opacity:.85}
   .socials{grid-template-columns:1fr;width:100%;max-width:340px}
 }
@@ -399,7 +404,10 @@ footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
 <section class="gallery" id="galeria">
   <div class="wrap gal-head" data-reveal>
     <h2 class="h2">Galería</h2>
-    <p>Arrastrá para ver más →</p>
+    <div class="gal-nav">
+      <button class="gal-btn" id="galPrev" aria-label="Fotos anteriores"><svg style="transform:scaleX(-1)"><use href="#i-arrow"/></svg></button>
+      <button class="gal-btn" id="galNext" aria-label="Más fotos"><svg><use href="#i-arrow"/></svg></button>
+    </div>
   </div>
   <div class="strip" id="strip">
     <figure><img src="assets/live-2.jpg" alt="Evelin Russo en vivo" loading="lazy"></figure>
@@ -628,6 +636,15 @@ audio.addEventListener('play', () => { if (!vid.muted){ vid.muted = true; syncSo
   s.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; down = true; moved = 0; sx = e.clientX; sl = s.scrollLeft; s.classList.add('drag'); });
   addEventListener('pointermove', e => { if (!down) return; const d = e.clientX - sx; moved = Math.abs(d); s.scrollLeft = sl - d; });
   addEventListener('pointerup', () => { down = false; s.classList.remove('drag'); });
+  const step = dir => {
+    const f = s.querySelector('figure'); const gap = parseFloat(getComputedStyle(s).columnGap) || 16;
+    s.scrollBy({ left: dir * (f.getBoundingClientRect().width + gap) * (innerWidth > 900 ? 2 : 1), behavior: 'smooth' });
+  };
+  const prev = $('#galPrev'), next = $('#galNext');
+  prev.addEventListener('click', () => step(-1));
+  next.addEventListener('click', () => step(1));
+  const sync = () => { prev.disabled = s.scrollLeft < 8; next.disabled = s.scrollLeft + s.clientWidth > s.scrollWidth - 8; };
+  s.addEventListener('scroll', sync, { passive: true }); addEventListener('resize', sync); sync();
   const lb = $('#lb'), lbi = lb.querySelector('img');
   s.addEventListener('click', e => { const img = e.target.closest('img'); if (!img || moved > 6) return; lbi.src = img.src; lb.classList.add('open'); });
   lb.addEventListener('click', e => { if (e.target !== lbi) lb.classList.remove('open'); });
