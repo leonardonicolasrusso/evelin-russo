@@ -211,8 +211,14 @@ section{position:relative}
 /* lightbox */
 .lb{position:fixed;inset:0;z-index:90;background:rgba(20,4,4,.92);display:none;place-items:center;padding:2rem}
 .lb.open{display:grid}
-.lb img{max-height:88vh;max-width:92vw;border-radius:14px}
-.lb button{position:absolute;top:1.2rem;right:1.4rem;font:600 .8rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--blush)}
+.lb img{max-height:84vh;max-width:min(92vw,1100px);border-radius:14px;user-select:none;-webkit-user-drag:none;transition:opacity .2s}
+.lb-close{position:absolute;top:1.2rem;right:1.4rem;font:600 .8rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--blush);z-index:2}
+.lb-arrow{position:absolute;top:50%;transform:translateY(-50%);background:rgba(36,8,7,.6);backdrop-filter:blur(8px);z-index:2}
+.lb-arrow:hover:not(:disabled){transform:translateY(calc(-50% - 2px))}
+.lb-prev{left:clamp(.6rem,3vw,2.5rem)}
+.lb-next{right:clamp(.6rem,3vw,2.5rem)}
+.lb-count{position:absolute;bottom:1.4rem;left:50%;transform:translateX(-50%);font:600 .78rem/1 var(--body);letter-spacing:.18em;color:var(--blush);opacity:.8}
+@media (max-width:600px){.lb{padding:1rem}.lb-arrow{top:auto;bottom:1rem;transform:none}.lb-arrow:hover:not(:disabled){transform:none}.lb-count{bottom:2.2rem}}
 
 /* booking */
 .book{background:radial-gradient(120% 90% at 85% 0%,#7a2a27 0%,var(--wine) 45%,var(--wine-3) 100%);overflow:hidden}
@@ -420,7 +426,13 @@ footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
     <figure><img src="assets/pink-2.jpg" alt="Evelin Russo en vivo" loading="lazy"></figure>
   </div>
 </section>
-<div class="lb" id="lb"><button id="lbClose">Cerrar ✕</button><img alt=""></div>
+<div class="lb" id="lb" role="dialog" aria-label="Foto ampliada">
+  <button class="lb-close" id="lbClose">Cerrar ✕</button>
+  <button class="gal-btn lb-arrow lb-prev" id="lbPrev" aria-label="Foto anterior"><svg style="transform:scaleX(-1)"><use href="#i-arrow"/></svg></button>
+  <img alt="">
+  <button class="gal-btn lb-arrow lb-next" id="lbNext" aria-label="Foto siguiente"><svg><use href="#i-arrow"/></svg></button>
+  <span class="lb-count" id="lbCount"></span>
+</div>
 
 <!-- BOOKING -->
 <section class="book sec" id="contratame">
@@ -646,9 +658,29 @@ audio.addEventListener('play', () => { if (!vid.muted){ vid.muted = true; syncSo
   const sync = () => { prev.disabled = s.scrollLeft < 8; next.disabled = s.scrollLeft + s.clientWidth > s.scrollWidth - 8; };
   s.addEventListener('scroll', sync, { passive: true }); addEventListener('resize', sync); sync();
   const lb = $('#lb'), lbi = lb.querySelector('img');
-  s.addEventListener('click', e => { const img = e.target.closest('img'); if (!img || moved > 6) return; lbi.src = img.src; lb.classList.add('open'); });
-  lb.addEventListener('click', e => { if (e.target !== lbi) lb.classList.remove('open'); });
-  addEventListener('keydown', e => e.key === 'Escape' && lb.classList.remove('open'));
+  const imgs = [...s.querySelectorAll('img')]; let cur = 0;
+  const show = i => {
+    cur = (i + imgs.length) % imgs.length;
+    lbi.src = imgs[cur].src; lbi.alt = imgs[cur].alt;
+    $('#lbCount').textContent = `${cur + 1} / ${imgs.length}`;
+  };
+  const close = () => { lb.classList.remove('open'); document.body.style.overflow = ''; };
+  s.addEventListener('click', e => { const img = e.target.closest('img'); if (!img || moved > 6) return; show(imgs.indexOf(img)); lb.classList.add('open'); document.body.style.overflow = 'hidden'; });
+  $('#lbPrev').addEventListener('click', e => { e.stopPropagation(); show(cur - 1); });
+  $('#lbNext').addEventListener('click', e => { e.stopPropagation(); show(cur + 1); });
+  lb.addEventListener('click', e => { if (e.target === lb || e.target.id === 'lbClose') close(); });
+  addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowRight') show(cur + 1);
+    if (e.key === 'ArrowLeft') show(cur - 1);
+  });
+  let tx = null;
+  lb.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', e => {
+    if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; tx = null;
+    if (Math.abs(dx) > 45) show(cur + (dx < 0 ? 1 : -1));
+  });
 })();
 
 /* ---------- whatsapp ---------- */
