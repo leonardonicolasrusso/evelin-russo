@@ -239,6 +239,8 @@ section{position:relative}
 footer{background:var(--wine-3);padding:4rem 0 2.5rem;text-align:center;display:grid;justify-items:center;gap:1.4rem}
 footer .logo{width:120px;opacity:.9}
 footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
+footer .credit{font-size:.72rem;opacity:.45;margin-top:-.6rem}
+footer .credit span,footer .credit a{color:var(--blush);font-weight:600}
 
 /* sticky mini player */
 .mini{position:fixed;left:50%;bottom:1rem;z-index:55;transform:translate(-50%,140%);transition:transform .6s var(--ease);display:flex;align-items:center;gap:.85rem;padding:.55rem .6rem .55rem .55rem;border-radius:999px;background:rgba(36,8,7,.82);border:1px solid rgba(235,180,191,.25);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 20px 50px -15px rgba(0,0,0,.7);width:min(520px,calc(100vw - 1.5rem))}
@@ -453,6 +455,7 @@ footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
 <footer>
   <span class="logo"></span>
   <p>© <span id="yr"></span> Evelin Russo · Rosario, Argentina</p>
+  <p class="credit">Diseño y desarrollo por <span>DE BAAY Agency</span></p>
 </footer>
 
 <!-- sticky mini player -->
