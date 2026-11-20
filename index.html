@@ -147,7 +147,7 @@ section{position:relative}
 .live{background:var(--wine-3);overflow:hidden}
 .live-head{text-align:center;display:grid;gap:1.2rem;justify-items:center;margin-bottom:3.5rem}
 .live-stage{position:relative;display:grid;place-items:center}
-.phone{position:relative;width:min(380px,82vw);aspect-ratio:9/16;border-radius:28px;overflow:hidden;background:#000;box-shadow:0 0 0 1px rgba(235,180,191,.25),0 40px 120px -20px rgba(235,180,191,.28),0 30px 60px -10px rgba(0,0,0,.7);z-index:2}
+.phone{position:relative;height:clamp(340px,calc(100svh - 300px),700px);width:auto;max-width:86vw;aspect-ratio:9/16;border-radius:28px;overflow:hidden;background:#000;box-shadow:0 0 0 1px rgba(235,180,191,.25),0 40px 120px -20px rgba(235,180,191,.28),0 30px 60px -10px rgba(0,0,0,.7);z-index:2}
 .phone video{width:100%;height:100%;object-fit:cover}
 .phone .live-badge{position:absolute;top:1rem;left:1rem;display:flex;align-items:center;gap:.45rem;font:700 .66rem/1 var(--body);letter-spacing:.16em;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);padding:.45rem .7rem;border-radius:99px}
 .live-badge::before{content:"";width:7px;height:7px;border-radius:50%;background:#ff4d6d;animation:blink 1.4s infinite}
@@ -161,9 +161,10 @@ section{position:relative}
 .live-cta{display:flex;justify-content:center;margin-top:3rem}
 .vprog{position:absolute;left:0;right:0;top:0;height:3px;background:rgba(255,255,255,.15);z-index:3}
 .vprog i{display:block;height:100%;width:0;background:var(--blush)}
-.vlist{display:flex;justify-content:center;gap:.9rem;margin:2rem auto 0;padding:0 1.25rem;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory}
+.videos-block{scroll-margin-top:72px}
+.vlist{display:flex;justify-content:center;gap:.9rem;margin:1.1rem auto 0;padding:0 1.25rem;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x mandatory}
 .vlist::-webkit-scrollbar{display:none}
-.vthumb{flex:none;width:118px;display:grid;gap:.55rem;text-align:left;scroll-snap-align:center;opacity:.6;transition:opacity .25s,transform .25s var(--ease)}
+.vthumb{flex:none;width:clamp(70px,7.5vw,96px);display:grid;gap:.55rem;text-align:left;scroll-snap-align:center;opacity:.6;transition:opacity .25s,transform .25s var(--ease)}
 .vthumb:hover{opacity:.9;transform:translateY(-3px)}
 .vthumb .tv{position:relative;aspect-ratio:9/16;border-radius:12px;overflow:hidden;border:2px solid transparent;transition:border-color .25s}
 .vthumb img{width:100%;height:100%;object-fit:cover}
@@ -173,7 +174,7 @@ section{position:relative}
 .vthumb small{display:block;font-size:.7rem;opacity:.65;margin-top:.15rem}
 .vthumb[aria-current=true]{opacity:1}
 .vthumb[aria-current=true] .tv{border-color:var(--blush)}
-@media (max-width:600px){.vlist{justify-content:flex-start}.vthumb{width:96px}}
+@media (max-width:600px){.vlist{gap:.6rem}.vthumb{width:70px;gap:.35rem}.vthumb b{font-size:.72rem}.vthumb small{display:none}}
 
 /* music */
 .music{background:linear-gradient(180deg,var(--wine-3),var(--wine))}
@@ -293,7 +294,7 @@ footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
 <nav class="nav" id="nav">
   <a href="#top" aria-label="Evelin Russo"><span class="logo"></span></a>
   <ul>
-    <li><a href="#en-vivo">En vivo</a></li>
+    <li><a href="#ver-videos">En vivo</a></li>
     <li><a href="#musica">Música</a></li>
     <li><a href="#galeria">Galería</a></li>
   </ul>
@@ -346,7 +347,7 @@ footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
       <span class="eyebrow">Conoceme</span>
       <h2 class="h2">Soy Eve Russo.<br><span class="serif">Cantante de Rosario</span></h2>
       <p class="lead">Mi show está pensado especialmente para el público joven y es ideal para fiestas populares, festivales y eventos que busquen una propuesta fresca, actual y con conexión real con la gente.</p>
-      <div><a class="pill pill-blush" href="#en-vivo"><svg><use href="#i-play"/></svg> Mirame en vivo</a></div>
+      <div><a class="pill pill-blush" href="#ver-videos"><svg><use href="#i-play"/></svg> Mirame en vivo</a></div>
     </div>
   </div>
 </section>
@@ -357,6 +358,7 @@ footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
     <span class="eyebrow">En vivo</span>
     <h2 class="h2">Así se vive <span class="serif">un show.</span></h2>
   </div>
+  <div id="ver-videos" class="videos-block">
   <div class="live-stage">
     <figure class="side-photo sp1" data-parallax="-0.1"><img src="assets/live-1.jpg" alt="" loading="lazy"></figure>
     <figure class="side-photo sp2" data-parallax="0.1"><img src="assets/white-3.jpg" alt="" loading="lazy"></figure>
@@ -367,7 +369,8 @@ footer p{font-size:.78rem;opacity:.5;letter-spacing:.06em}
       <button class="sound" id="sound"><svg><use href="#i-mute"/></svg><span>Activar sonido</span></button>
     </div>
   </div>
-  <div class="vlist" id="vlist" data-reveal></div>
+  <div class="vlist" id="vlist"></div>
+  </div>
   <div class="live-cta" data-reveal><a class="pill pill-blush" href="#contratame">Quiero este show en mi evento <svg><use href="#i-arrow"/></svg></a></div>
 </section>
 
@@ -550,16 +553,11 @@ function hearts(btn){
 
 /* ---------- nav + mini player visibility ---------- */
 const hero = $('#top'), nav = $('#nav');
-new IntersectionObserver(([en]) => {
-  nav.classList.toggle('solid', !en.isIntersecting);
-  mini.classList.toggle('show', !en.isIntersecting && !nearBooking);
-}, { threshold: 0.12 }).observe(hero);
-let nearBooking = false;
-new IntersectionObserver(([en]) => {
-  nearBooking = en.isIntersecting;
-  const heroGone = hero.getBoundingClientRect().bottom < innerHeight * 0.12;
-  mini.classList.toggle('show', heroGone && !nearBooking);
-}, { threshold: 0.15 }).observe($('#contratame'));
+let heroGone = false, nearBooking = false, nearVideos = false;
+const updateMini = () => mini.classList.toggle('show', heroGone && !nearBooking && !nearVideos);
+new IntersectionObserver(([en]) => { heroGone = !en.isIntersecting; nav.classList.toggle('solid', heroGone); updateMini(); }, { threshold: 0.12 }).observe(hero);
+new IntersectionObserver(([en]) => { nearBooking = en.isIntersecting; updateMini(); }, { threshold: 0.15 }).observe($('#contratame'));
+new IntersectionObserver(([en]) => { nearVideos = en.isIntersecting; updateMini(); }, { threshold: 0.25 }).observe($('#ver-videos'));
 window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 40), { passive: true });
 
 /* ---------- reveal + parallax ---------- */
@@ -585,7 +583,7 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches){
 const VIDEOS = [
   { id:'v-fiesta-helado', title:'Fiesta del Helado', sub:'En vivo', badge:'EN VIVO' },
   { id:'v-burgerland',    title:'Burgerland',        sub:'En vivo', badge:'EN VIVO' },
-  { id:'v-cazzu-vivo',    title:'Cazzu',             sub:'En vivo', badge:'EN VIVO' },
+  { id:'v-cazzu-vivo',    title:'Rosario',             sub:'En vivo', badge:'EN VIVO' },
   { id:'v-olvidala',      title:'Olvídala',          sub:'En estudio', badge:'EN ESTUDIO' }
 ];
 const vid = $('#vid'), soundBtn = $('#sound'), vlist = $('#vlist');
